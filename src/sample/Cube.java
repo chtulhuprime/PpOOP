@@ -8,7 +8,7 @@ import javafx.scene.transform.Rotate;
 
 public class Cube { //creating cube
     private final Box box = new Box();
-    private int cubeSize;
+    private double cubeSize;
     private String cubeColor;
 
     Box createCube(){
@@ -40,11 +40,11 @@ public class Cube { //creating cube
 
     }
 
-    public int getCubeSize() {
+    public double getCubeSize() {
         return cubeSize;
     }
 
-    public void setCubeSize(int cubeSize) {
+    public void setCubeSize(double cubeSize) {
         this.cubeSize = cubeSize;
     }
 

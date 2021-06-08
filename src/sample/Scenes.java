@@ -14,14 +14,14 @@ import javafx.stage.Stage;
 public class Scenes {
     private Scene menu, cube;
     private Button btn;
-    private final Slider slider = new Slider(200.0, 600.0, 200.0);
+    private final Slider slider = new Slider(200.0, 400.0, 300.0);
     private final ObservableList<String> colors = FXCollections.observableArrayList("Синий", "Красный", "Желтый", "Зеленый");
     private final ChoiceBox<String> colorsChoiceBox = new ChoiceBox<>(colors);
     private final Cube cube1 = new Cube();
     private Box box = new Box();
     private final Label lbl = new Label();
     private final Label lbl2 = new Label();
-    private int size = 200;
+    private double size = 200;
 
 
     public Scene getMenuScene() {
@@ -33,6 +33,8 @@ public class Scenes {
         lbl.setTranslateX(20);
 
         slider.setShowTickMarks(true);
+        slider.setMaxWidth(180);
+        slider.setTranslateX(10);
         slider.setShowTickLabels(true);
         slider.setBlockIncrement(25.0);
         slider.setMajorTickUnit(25.0);
@@ -50,7 +52,7 @@ public class Scenes {
         btn = new Button("Show");
         btn.setTranslateX(75);
         btn.setOnAction(e ->{
-            slider.valueProperty().addListener((changed, oldValue, newValue) -> size = newValue.intValue());
+            size = slider.getValue();
             cube1.setCubeSize(size);
             box = cube1.createCube();
             cube1.animateCube(box);
@@ -75,6 +77,6 @@ public class Scenes {
 
         StackPane layout2 = new StackPane();
         layout2.getChildren().addAll(btn,box);
-        cube = new Scene(layout2, cube1.getCubeSize()+300, cube1.getCubeSize()+300);
+        cube = new Scene(layout2, 600, 600);
     }
 }
