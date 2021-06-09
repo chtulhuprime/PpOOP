@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class Scenes {
     private Scene menu, cube;
     private Button btn;
-    private final Slider slider = new Slider(200.0, 400.0, 300.0);
+    private final Slider slider = new Slider(1, 5, 3);
     private final ObservableList<String> colors = FXCollections.observableArrayList("Синий", "Красный", "Желтый", "Зеленый");
     private final ChoiceBox<String> colorsChoiceBox = new ChoiceBox<>(colors);
     private final Cube cube1 = new Cube();
@@ -31,14 +31,13 @@ public class Scenes {
     public void setMenuScene(Stage stage) {
         lbl.setText("Выберите размер куба");
         lbl.setTranslateX(20);
+        lbl.setTranslateY(5);
 
         slider.setShowTickMarks(true);
         slider.setMaxWidth(180);
         slider.setTranslateX(10);
         slider.setShowTickLabels(true);
-        slider.setBlockIncrement(25.0);
-        slider.setMajorTickUnit(25.0);
-        slider.setMinorTickCount(25);
+        slider.setMajorTickUnit(1);
         slider.setSnapToTicks(true);
 
         lbl2.setText("Выберите цвет");
@@ -53,8 +52,7 @@ public class Scenes {
         btn.setTranslateX(75);
         btn.setOnAction(e ->{
             size = slider.getValue();
-            cube1.setCubeSize(size);
-            box = cube1.createCube();
+            box = cube1.prepareCube(size);
             cube1.animateCube(box);
             setCubeScene(stage);
             stage.setScene(getCubeScene());

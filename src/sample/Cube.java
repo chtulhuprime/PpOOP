@@ -8,23 +8,22 @@ import javafx.scene.transform.Rotate;
 
 public class Cube { //creating cube
     private final Box box = new Box();
-    private double cubeSize;
     private String cubeColor;
 
-    Box createCube(){
-        box.setWidth(getCubeSize());
-        box.setHeight(getCubeSize());
-        box.setDepth(getCubeSize());
+    public Box prepareCube(double cubeSize){
+        cubeSize = 200 + (cubeSize-1)*50;
 
-        PhongMaterial mat = new PhongMaterial();
-        mat.setSpecularColor(Color.WHITE);
-        mat.setDiffuseColor(Color.valueOf(getCubeColor()));
+        box.setWidth(cubeSize);
+        box.setHeight(cubeSize);
+        box.setDepth(cubeSize);
 
-        box.setMaterial(mat);
+        PhongMaterial clr = new PhongMaterial();
+        clr.setSpecularColor(Color.WHITE);
+        clr.setDiffuseColor(Color.valueOf(cubeColor));
 
-        Rotate yRotation = new Rotate(25, Rotate.Y_AXIS);
+        box.setMaterial(clr);
+
         box.setRotationAxis(Rotate.Y_AXIS);
-        box.getTransforms().addAll(yRotation);
 
         return box;
     }
@@ -37,15 +36,6 @@ public class Cube { //creating cube
             }
         };
         timer.start();
-
-    }
-
-    public double getCubeSize() {
-        return cubeSize;
-    }
-
-    public void setCubeSize(double cubeSize) {
-        this.cubeSize = cubeSize;
     }
 
     public void setCubeColor(String cubeColor) {
@@ -56,9 +46,5 @@ public class Cube { //creating cube
             case "Зеленый" -> cubeColor = "GREEN";
         }
         this.cubeColor = cubeColor;
-    }
-
-    public String getCubeColor() {
-        return cubeColor;
     }
 }

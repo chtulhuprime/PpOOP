@@ -16,7 +16,8 @@ public class Main extends Application{
         scene.setMenuScene(window);
 
         window.setScene(scene.getMenuScene());
-        window.setTitle("PpOOP");
+        window.setTitle("Cube");
+        window.setResizable(false);
         window.getIcons().add(new Image("file:cube.png"));
         window.show();
     }
